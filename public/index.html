@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+<head>
+	<meta charset="utf-8" />
+	<title>AngularJS Plunker</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.1.2/css/bulma.min.css">
+
+	<script>document.write('<base href="' + document.location + '" />');</script>
+	<script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script data-require="angular.js@1.2.x" src="http://code.angularjs.org/1.2.11/angular.js" data-semver="1.2.11"></script>
+	<script data-require="typeahead.js@*" data-semver="0.10.0" src="http://twitter.github.com/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+	<script data-require="bloodhound.js@*" data-semver="0.10.0" src="http://twitter.github.com/typeahead.js/releases/latest/bloodhound.js"></script>
+	<script src="angular-typeahead.js"></script>
+	<script src="app.js"></script>
+
+</head>
+
+<body ng-controller="MainCtrl">
+	<div class="columns">
+		<div class="column">
+			<p class="control has-addons">				  
+				<input class="input typeahead" type="text" sf-typeahead options="exampleOptions" datasets="numbersDataset" ng-model="selectedNumber">
+				<a class="button is-info" ng-click="addToList(selectedNumber)">
+					Añadir
+				</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="columns">
+		<div class="column is-half">
+			<div class="content">
+				<h2>{{selectedNumber.titulo}}</h2>
+				<p>{{selectedNumber.descripcion}}</p>
+				<p>{{selectedNumber.solucion}}</p>
+				<p>{{selectedNumber.referncias}}</p>
+			</div>
+
+			<div class="content" ng-repeat="vuln in vulnsList">
+				<h2>{{vuln.titulo}}</h2>
+				<p>{{vuln.descripcion}}</p>
+				<p>{{vuln.solucion}}</p>
+				<p>{{vuln.referncias}}</p>
+			</div>
+
+		</div>
+		<div class="column is-half">
+			<label class="label">Titulo</label>
+			<p class="control">
+				<input class="input" type="text" ng-model="vuln.titulo" placeholder="Titulo">
+			</p>
+			<label class="label">Riesgo</label>
+			<p class="control">
+				<span class="select">
+					<select>
+						<option>Alto</option>
+						<option>Medio</option>
+						<option>Bajo</option>
+					</select>
+				</span>
+			</p>
+			<label class="label">Descripcion</label>
+			<p class="control">
+				<textarea class="textarea" name="descripcion" cols="30" rows="10" ng-model="vuln.descripcion"></textarea>
+			</p>
+			<p class="control">
+				<label class="label">Solucion</label>
+				<p class="control">
+					<textarea class="textarea" name="descripcion" cols="30" rows="10" ng-model="vuln.solucion"></textarea>
+				</p>
+			</p>			
+			<label class="label">Referencias</label>
+			<p class="control">			  
+				<input class="input" type="text" ng-model="vuln.referencias" placeholder="Referencias">
+			</p>
+			<p class="control">
+				<button class="button is-primary" type="button" ng-click="addValue(vuln)">Agregar vulnerabilidad</button>
+			</p>			
+		</div>
+	</div>
+	{{vulnerabl.data}}
+	  <!--<button type="button" ng-click="setValue()">Set value (two-way demo)</button>
+	  <button type="button" ng-click="clearValue()">Clear value to null</button>-->
+	</body>
+
+	</html>
